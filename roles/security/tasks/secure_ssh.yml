@@ -1,0 +1,62 @@
+---
+- name: Establish Cronjob to update the openssh-server package on a daily basis
+  cron:
+    name: Cronjob to update the openssh-server package on a daily basis
+    user: root
+    minute: "0"
+    hour: "0"
+    day: "*"
+    month: "*"
+    weekday: "*"
+    state: present
+    job: "apt-get install openssh-server -y"
+
+- name: Set users that are allowed to use SSH
+  lineinfile:
+    path: "{{ sshd_config_path }}"
+    insertafter: "EOF"
+    line: "AllowUsers {{ alternative_user_name }}"
+  notify:
+    - restart ssh
+
+- name: Set users that are not allowed to use SSH
+  lineinfile:
+    path: "{{ sshd_config_path }}"
+    insertafter: "EOF"
+    line: "DenyUsers pi root"
+  notify:
+    - restart ssh
+
+- name: Copy authorized_keys file to Raspberry Pi
+  copy:
+    src: "authorized_keys"
+    dest: "/home/{{ alternative_user_name }}/.ssh/"
+    owner: "{{ alternative_user_name }}"
+    group: root
+    mode: "0644"
+  notify:
+    - restart ssh
+
+- name: Disable ChallengeResponseAuthentication
+  lineinfile:
+    path: "{{ sshd_config_path }}"
+    regexp: "^ChallengeResponseAuthentication"
+    line: "ChallengeResponseAuthentication no"
+  notify:
+    - restart ssh
+
+- name: Disable PasswordAuthentication
+  lineinfile:
+    path: "{{ sshd_config_path }}"
+    regexp: "^PasswordAuthentication"
+    line: "PasswordAuthentication no"
+  notify:
+    - restart ssh
+
+- name: Disable UsePAM
+  lineinfile:
+    path: "{{ sshd_config_path }}"
+    regexp: "^UsePAM"
+    line: "UsePAM no"
+  notify:
+    - restart ssh

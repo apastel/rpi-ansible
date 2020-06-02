@@ -1,0 +1,6 @@
+<host_1>          ansible_ssh_host=<ip_address>      desired_hostname=<my-pi>
+<host_2>          ansible_ssh_host=<ip_address>      desired_hostname=<my-other-pi>
+
+[raspberry_pi]
+<host_1>
+<host_2>

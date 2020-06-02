@@ -1,0 +1,5 @@
+---
+# Generate encrypted passwords with `mkpasswd --method=sha-512`
+pi_password_custom_enc:
+alternative_user_name:
+alternative_user_password_enc:

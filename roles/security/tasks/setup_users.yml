@@ -1,0 +1,15 @@
+---
+# The pi user has to be present for some aspects of the Raspberry Pi OS, therefore it will not be deleted.
+- name: Create alternative user
+  user:
+    name: "{{ alternative_user_name }}"
+    group: sudo
+    uid: 5000
+    password: "{{ alternative_user_password_enc }}"
+    shell: /bin/bash
+
+- name: Make sudo require a password for the pi user
+  lineinfile:
+    path: "{{ pi_sudoersd_path }}"
+    regexp: "^pi"
+    line: "pi ALL=(ALL) PASSWD: ALL"

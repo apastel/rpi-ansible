@@ -1,0 +1,12 @@
+---
+- name: Install fail2ban
+  apt:
+    name: "fail2ban"
+
+- name: Copy jail.local file
+  copy:
+      src: "jail.local"
+      dest: "/etc/fail2ban/"
+      owner: root
+      group: root
+      mode: "0644"

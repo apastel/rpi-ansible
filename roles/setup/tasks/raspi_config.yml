@@ -1,0 +1,44 @@
+---
+- name: Upgrade apt packages
+  apt:
+    update_cache: yes
+    upgrade: yes
+
+- name: Set hostname
+  command: "raspi-config nonint do_hostname {{ desired_hostname }}"
+  notify:
+    - reboot host
+
+- name: Set boot behavior
+  command: "raspi-config nonint do_boot_behaviour {{ boot_behavior}}"
+  notify:
+    - reboot host
+
+- name: Set locale
+  command: "raspi-config nonint do_change_locale {{ locale }}"
+  notify:
+    - reboot host
+
+- name: Set timezone
+  command: "raspi-config nonint do_change_timezone {{ timezone }}"
+  notify:
+    - reboot host
+
+- name: Set WiFi country
+  command: "raspi-config nonint do_wifi_country {{ wifi_country }}"
+  notify:
+    - reboot host
+
+- name: Enable Camera
+  command: "raspi-config nonint do_camera 0"
+  when: camera_enabled
+  notify:
+    - reboot host
+
+- name: Expand Filesystem
+  shell: "raspi-config nonint do_expand_rootfs"
+  notify:
+    - reboot host
+
+- name: Reboot host if anything changed
+  meta: flush_handlers

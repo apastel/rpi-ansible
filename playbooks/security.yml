@@ -1,0 +1,6 @@
+---
+- hosts: raspberry_pi
+  roles:
+    - security
+  handlers:
+    - import_tasks: ../handlers/handlers.yml

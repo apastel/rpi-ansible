@@ -1,0 +1,13 @@
+---
+- import_tasks: raspi_config.yml
+
+- name: Install useful packages
+  apt:
+    pkg:
+      - vim
+      - git
+
+- name: Change the password of the default pi user
+  user:
+    name: pi
+    password: "{{ pi_password_custom_enc }}"

@@ -1,0 +1,10 @@
+---
+- name: reboot host
+  reboot:
+    reboot_timeout: 60
+    post_reboot_delay: 10
+
+- name: restart ssh
+  service:
+    name: ssh
+    state: restarted

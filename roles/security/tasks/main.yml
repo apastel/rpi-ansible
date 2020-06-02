@@ -1,0 +1,13 @@
+---
+- name: Upgrade apt packages
+  apt:
+    update_cache: yes
+    upgrade: yes
+
+- import_tasks: setup_users.yml
+
+- import_tasks: secure_ssh.yml
+
+- import_tasks: setup_firewall.yml
+
+- import_tasks: setup_fail2ban.yml

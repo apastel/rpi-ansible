@@ -1,0 +1,24 @@
+---
+- name: Install ufw (Uncomplicated Fire Wall)
+  apt:
+    name: "ufw"
+
+- name: Start and enable UFW
+  ufw:
+    state: enabled
+
+- name: Establish default incoming firewall rule
+  ufw:
+    policy: deny
+    direction: incoming
+
+- name: Establish default outgoing firewall rule
+  ufw:
+    policy: allow
+    direction: outgoing
+
+- name: Establish ssh firewall rule
+  ufw:
+    rule: limit
+    port: ssh
+    proto: tcp
