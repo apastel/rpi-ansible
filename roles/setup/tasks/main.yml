@@ -1,5 +1,5 @@
 ---
-- import_tasks: raspi_config.yml
+- import_tasks: raspi-config.yml
 
 - name: Install useful packages
   apt:
