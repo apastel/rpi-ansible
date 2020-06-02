@@ -7,6 +7,12 @@
       - vim
       - git
 
+- name: Allow ll alias for alternative user
+  replace:
+    path: "/home/pi/.bashrc"
+    regexp: "#alias ll='ls -l'"
+    replace: "alias ll='ls -l'"
+
 - name: Change the password of the default pi user
   user:
     name: pi

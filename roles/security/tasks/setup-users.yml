@@ -8,6 +8,12 @@
     password: "{{ alternative_user_password_enc }}"
     shell: /bin/bash
 
+- name: Allow ll alias for alternative user
+  replace:
+    path: "/home/{{ alternative_user_name }}/.bashrc"
+    regexp: "#alias ll='ls -l'"
+    replace: "alias ll='ls -l'"
+
 - name: Make sudo require a password for the pi user
   lineinfile:
     path: "{{ pi_sudoersd_path }}"
