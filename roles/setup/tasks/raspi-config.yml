@@ -5,7 +5,7 @@
     upgrade: yes
 
 - name: Set hostname
-  command: "raspi-config nonint do_hostname {{ desired_hostname }}"
+  command: "raspi-config nonint do_hostname {{ inventory_hostname }}"
   notify:
     - reboot host
 

@@ -7,7 +7,7 @@
       - vim
       - git
 
-- name: Allow ll alias for alternative user
+- name: Enable ll alias
   replace:
     path: "/home/pi/.bashrc"
     regexp: "#alias ll='ls -l'"

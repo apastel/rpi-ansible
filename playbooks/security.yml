@@ -1,5 +1,5 @@
 ---
-- hosts: raspberry_pis
+- hosts: secured_pis
   roles:
     - security
   handlers:
