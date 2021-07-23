@@ -4,7 +4,10 @@
     update_cache: yes
     upgrade: yes
 
-- import_tasks: setup-users.yml
+- import_tasks: setup-alt-user.yml
+  when: alt_user_name
+
+- import_tasks: secure-sudo.yml
 
 - import_tasks: secure-ssh.yml
 

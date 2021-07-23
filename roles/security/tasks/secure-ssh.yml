@@ -15,7 +15,7 @@
   lineinfile:
     path: "{{ sshd_config_path }}"
     insertafter: "EOF"
-    line: "AllowUsers {{ alternative_user_name }}"
+    line: "AllowUsers {{ alt_user_name or 'pi' }}"
   notify:
     - restart ssh
 
@@ -23,15 +23,15 @@
   lineinfile:
     path: "{{ sshd_config_path }}"
     insertafter: "EOF"
-    line: "DenyUsers pi root"
+    line: "DenyUsers {{ 'pi' if alt_user_name }} root"
   notify:
     - restart ssh
 
 - name: Copy authorized_keys file to Raspberry Pi
   copy:
     src: "authorized_keys"
-    dest: "/home/{{ alternative_user_name }}/.ssh/"
-    owner: "{{ alternative_user_name }}"
+    dest: "/home/{{ alt_user_name or 'pi' }}/.ssh/"
+    owner: "{{ alt_user_name or 'pi' }}"
     group: root
     mode: "0644"
   notify:

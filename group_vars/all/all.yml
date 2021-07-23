@@ -1,5 +1,13 @@
 ---
-# Generate encrypted passwords with `mkpasswd --method=sha-512`
-pi_password_custom_enc:
-alternative_user_name:
-alternative_user_password_enc:
+# user variables
+alt_user_name: "{{ vault_alt_user_name }}"
+custom_user_pass: "{{ vault_custom_user_pass }}"
+custom_user_pass_enc: "{{ vault_custom_user_pass_enc }}"
+
+# raspi-config variables
+boot_behavior: "B1"
+locale: en_US.UTF-8
+timezone: "America/Denver"
+camera_enabled: yes
+vnc_enabled: no
+wifi_country: "US"

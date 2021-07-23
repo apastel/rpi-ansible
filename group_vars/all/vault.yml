@@ -1,3 +1,18 @@
-secured_pi_user:
-secured_pi_pass:
-unsecured_pi_pass:
+---
+### vault_alt_user_name (optional) ###
+# If you want to replace the default "pi" user, set this to another custom username.
+# The "pi" user won't be deleted, but it won't be allowed to log in or do anything.
+# Instead, this alternative user will be the new main user. Recommended for public-facing servers.
+# Leave it blank and no alternative user will be created.
+vault_alt_user_name:
+
+### vault_custom_user_pass ###
+# The plaintext password that will be used to log in after the password is changed by setup.yml
+vault_custom_user_pass:
+
+### vault_custom_user_pass_enc ###
+# Encrypted version of the password that you wish to replace the default password of 'raspberry'.
+# This password will be associated with the 'pi' user and the alternative user if one is created.
+# This is really just the encrypted form of vault_custom_user_pass, so in a future update it shouldn't be necessary to specify both.
+# Generate encrypted passwords with `mkpasswd --method=sha-512`
+vault_custom_user_pass_enc:

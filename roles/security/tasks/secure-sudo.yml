@@ -1,0 +1,6 @@
+---
+- name: Make sudo require a password for the pi user
+  lineinfile:
+    path: "{{ pi_sudoersd_path }}"
+    regexp: "^pi"
+    line: "pi ALL=(ALL) PASSWD: ALL"

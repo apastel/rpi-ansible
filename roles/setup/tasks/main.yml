@@ -16,4 +16,4 @@
 - name: Change the password of the default pi user
   user:
     name: pi
-    password: "{{ pi_password_custom_enc }}"
+    password: "{{ custom_user_pass_enc }}"

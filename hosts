@@ -1,25 +1,26 @@
-pi1             ansible_ssh_host=192.168.0.1
-pi2             ansible_ssh_host=192.168.0.2
-pi3             ansible_ssh_host=192.168.0.3
+pi1          ansible_ssh_host=192.168.0.101
+pi2          ansible_ssh_host=192.168.0.102
+pi3          ansible_ssh_host=192.168.0.103
 
 [raspberry_pis]
 pi1
 pi2
 pi3
 
-[secured_pis]
+[alt_username_pis]
 pi2
 
-[secured_pis:vars]
-ansible_ssh_user={{ secured_pi_user }}
-ansible_ssh_pass={{ secured_pi_pass }}
-ansible_sudo_pass={{ secured_pi_pass }}
-
-[unsecured_pis]
+[reg_username_pis]
 pi1
 pi3
 
-[unsecured_pis:vars]
+[alt_username_pis:vars]
+ansible_ssh_user={{ alt_user_name }}
+
+[reg_username_pis:vars]
 ansible_ssh_user=pi
-ansible_ssh_pass={{ unsecured_pi_pass }}
-ansible_sudo_pass={{ unsecured_pi_pass }}
+
+[raspberry_pis:vars]
+;uncomment this section after running setup.yml
+;ansible_ssh_pass={{ custom_user_pass }}
+;ansible_sudo_pass={{ custom_user_pass }}
