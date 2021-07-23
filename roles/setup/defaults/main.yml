@@ -1,6 +1,0 @@
-boot_behavior: "B1"
-locale: en_US.UTF-8
-timezone: "America/Los_Angeles"
-camera_enabled: yes
-vnc_enabled: no
-wifi_country: "US"
